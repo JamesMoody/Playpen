@@ -1,0 +1,35 @@
+/**********************************************************************
+** Goal: Provide various functions that can be called from buttons
+**       via various parameters.
+*/
+
+
+public Program() {
+   Runtime.UpdateFrequency = UpdateFrequency.Once;
+//   Runtime.UpdateFrequency = UpdateFrequency.Update10; 
+}
+
+
+public void Main(string argument, UpdateType updateSource) {
+  // ugg... argument's length is severely limited. Need something different to pass complex params. Maybe argument is a reference to the params?
+
+
+  // todo:
+  // 1) The target LCD needs to be a parameter
+  // 2) what's the rest of the built-in scripts/apps? 
+  IMyTextSurface lcd = GridTerminalSystem.GetBlockWithName("Roamer - Living Room LCD Panel") as IMyTextSurface;
+// Echo($"Script: {lcd.Script} ");
+
+  switch(argument.ToUpper()) {
+    case "WEATHER":
+      lcd.ContentType = ContentType.SCRIPT;
+      lcd.Script = "TSS_Weather";
+      break;
+
+    case "CLOCK":
+      lcd.ContentType = ContentType.SCRIPT;
+      lcd.Script = "TSS_ClockDigital";
+      break;
+   }
+
+}
